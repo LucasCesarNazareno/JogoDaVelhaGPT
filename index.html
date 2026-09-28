@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#11151b">
+  <meta name="description" content="Nove tabuleiros. Uma grande disputa. Jogue Ultimate Tic-Tac-Toe com um amigo, no mesmo dispositivo.">
+  <title>Ultimate — Jogo da Velha 2</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Ultimate, início">
+        <span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        <span>ultimate<span class="brand-dot">.</span></span>
+      </a>
+      <div class="header-actions">
+        <span class="local-badge"><span></span> 2 jogadores locais</span>
+        <button class="button button-quiet" id="help-button" type="button"><span class="help-icon" aria-hidden="true">?</span> Como jogar</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">O CLÁSSICO EM OUTRA DIMENSÃO</p>
+        <h1 id="page-title">Pequenas jogadas.<br><span>Grandes estratégias.</span></h1>
+        <p class="intro-description">Nove tabuleiros. Uma grande disputa. Cada jogada decide o próximo destino.</p>
+      </section>
+
+      <div class="game-layout">
+        <section class="board-section" aria-label="Área de jogo">
+          <div class="board-toolbar"><span><span class="live-dot" aria-hidden="true"></span> <span id="board-caption">PARTIDA EM ANDAMENTO</span></span><span id="move-count">JOGADA 01</span></div>
+          <div class="ultimate-board" id="ultimate-board" aria-label="Tabuleiro principal com nove tabuleiros menores"></div>
+          <div class="board-legend"><span><i class="legend-square"></i> Tabuleiro disponível</span><span>Numeração de teclado numérico <span aria-hidden="true">↗</span></span></div>
+        </section>
+
+        <aside class="game-sidebar" aria-label="Informações da partida">
+          <section class="turn-card" aria-labelledby="turn-heading">
+            <div class="card-kicker" id="turn-heading">A VEZ É DE</div>
+            <div class="current-player"><span id="turn-symbol" class="player-tile mark-x" aria-hidden="true">X</span><div><h2 id="turn-player">Jogador X</h2><p id="turn-subtitle">Pode começar a partida</p></div><span class="turn-indicator" aria-hidden="true"></span></div>
+            <div class="destination" role="status" aria-live="polite" aria-atomic="true"><span class="destination-icon" id="destination-icon" aria-hidden="true">↗</span><div><h3 id="destination-title">Escolha livre</h3><p id="destination-description">Jogue em qualquer tabuleiro disponível.</p></div></div>
+          </section>
+
+          <section class="score-card" aria-labelledby="score-heading">
+            <div class="card-heading"><h2 class="card-kicker" id="score-heading">PLACAR</h2><span>neste navegador</span></div>
+            <div class="score-grid"><div><span class="score-player mark-x">X</span><strong id="score-x">0</strong><span>Jogador X</span></div><div class="draw-score"><span class="score-player">—</span><strong id="score-draw">0</strong><span>Empates</span></div><div><span class="score-player mark-o">O</span><strong id="score-o">0</strong><span>Jogador O</span></div></div>
+          </section>
+
+          <section class="tip-card" aria-labelledby="tip-heading"><span class="tip-icon" aria-hidden="true">↳</span><h2 id="tip-heading">Sua jogada tem um destino.</h2><p>A casa que você escolhe envia seu adversário para o tabuleiro de mesmo número.</p><div class="tip-example"><span>Casa <b>7</b></span><span aria-hidden="true">→</span><span>Tabuleiro <b>7</b></span></div><p class="tip-footnote">Conquiste 3 tabuleiros em linha para vencer.</p></section>
+
+          <button class="button restart-button" id="restart-button" type="button"><span aria-hidden="true">↻</span> Reiniciar partida</button>
+          <p class="restart-note">Uma nova partida. O placar continua.</p>
+        </aside>
+      </div>
+    </main>
+
+    <footer><span>JOGO DA VELHA <b>2</b></span><span>Feito para pensar. E jogar de novo.</span></footer>
+  </div>
+
+  <dialog id="result-dialog" class="modal" aria-labelledby="result-title" aria-describedby="result-description">
+    <div class="result-emblem" id="result-emblem" aria-hidden="true">X</div><p class="eyebrow">FIM DE PARTIDA</p><h2 id="result-title">Jogador X venceu!</h2><p id="result-description">Três tabuleiros conquistados em sequência.</p><button class="button primary-button" id="play-again-button" type="button" autofocus>Jogar novamente <span aria-hidden="true">↗</span></button><button class="button button-quiet view-board-button" id="view-board-button" type="button">Ver tabuleiro final</button>
+  </dialog>
+
+  <dialog id="help-dialog" class="modal help-modal" aria-labelledby="help-title">
+    <button class="close-button" id="close-help-button" type="button" aria-label="Fechar instruções">×</button><p class="eyebrow">9 TABULEIROS · 81 POSSIBILIDADES</p><h2 id="help-title">Um clássico. Mais estratégia.</h2>
+    <ol class="rules"><li><b>X começa com escolha livre.</b> Os dois jogadores se alternam no mesmo dispositivo.</li><li><b>Sua casa define o próximo tabuleiro.</b> Jogou na casa 7? O adversário deve jogar no tabuleiro 7.</li><li><b>Três em linha conquistam um tabuleiro.</b> Ele fica fechado, inclusive as casas vazias.</li><li><b>Destino fechado? Escolha livre.</b> Se o destino foi conquistado ou empatou, qualquer tabuleiro aberto vale.</li><li><b>Conquiste três tabuleiros em linha.</b> Vale horizontal, vertical ou diagonal. Se todos fecharem sem vencedor, é empate.</li></ol>
+    <div class="keypad-guide"><div class="keypad" aria-label="Ordem das posições: 7, 8, 9; 4, 5, 6; 1, 2, 3"><span>7</span><span>8</span><span>9</span><span>4</span><span>5</span><span>6</span><span>1</span><span>2</span><span>3</span></div><p>A mesma numeração vale para os tabuleiros e para as casas dentro deles.</p></div>
+    <button class="button primary-button" id="understood-button" type="button">Entendi, vamos jogar <span aria-hidden="true">↗</span></button>
+  </dialog>
+</body>
+</html>
